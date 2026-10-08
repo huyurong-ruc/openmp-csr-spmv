@@ -1,0 +1,13 @@
+#老师提供的题目、starter code、和参考材料
+course_materials/
+
+#本地编译产物
+*.exe
+*.o
+*.obj
+*.out
+
+#编辑器配置和临时文件
+.vscode/
+*.tmp
+*~
