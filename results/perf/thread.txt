@@ -1,0 +1,46 @@
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+std::thread             0.906 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+std::thread             0.773 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+std::thread             0.905 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+std::thread             1.097 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+std::thread             1.150 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+std::thread             0.925 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+std::thread             1.449 ms
+All correctness checks passed.
+87.90,msec,task-clock:u,1.86%,94573053,100.00,,
+<not supported>,,cycles:u,0.00%,0,100.00,,
+<not supported>,,instructions:u,0.00%,0,100.00,,
+<not supported>,,cache-references:u,0.00%,0,100.00,,
+<not supported>,,cache-misses:u,0.00%,0,100.00,,
+<not supported>,,branches:u,0.00%,0,100.00,,
+<not supported>,,branch-misses:u,0.00%,0,100.00,,
+0,,context-switches:u,0.00%,94573053,100.00,,
+0,,cpu-migrations:u,0.00%,94573053,100.00,,
+12493,,page-faults:u,0.00%,94573053,100.00,,
+54596609,,duration_time,1.78%,7,100.00,,

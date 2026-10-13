@@ -1,0 +1,5 @@
+implementation,task_clock_ms,cycles,instructions,ipc,cache_references,cache_misses,cache_miss_rate,branches,branch_misses,branch_miss_rate,context_switches,cpu_migrations,page_faults,elapsed_time_s,available_events,unavailable_events
+serial,65.51,,,,,,,,,,0,0,12217,0.067547670,"task-clock;context-switches;cpu-migrations;page-faults;duration_time","cycles;instructions;cache-references;cache-misses;branches;branch-misses"
+std_thread,87.90,,,,,,,,,,0,0,12493,0.054596609,"task-clock;context-switches;cpu-migrations;page-faults;duration_time","cycles;instructions;cache-references;cache-misses;branches;branch-misses"
+dynamic,88.09,,,,,,,,,,0,0,12247,0.049560611,"task-clock;context-switches;cpu-migrations;page-faults;duration_time","cycles;instructions;cache-references;cache-misses;branches;branch-misses"
+long_row,102.65,,,,,,,,,,0,0,12246,0.054938759,"task-clock;context-switches;cpu-migrations;page-faults;duration_time","cycles;instructions;cache-references;cache-misses;branches;branch-misses"

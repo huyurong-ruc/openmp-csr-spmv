@@ -1,0 +1,46 @@
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+OpenMP 1 (TODO)   0.487 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+OpenMP 1 (TODO)   0.688 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+OpenMP 1 (TODO)   0.522 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+OpenMP 1 (TODO)   0.576 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+OpenMP 1 (TODO)   0.576 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+OpenMP 1 (TODO)   0.474 ms
+All correctness checks passed.
+CSR SpMV skewed-matrix experiment
+rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
+OpenMP enabled, _OPENMP=201511
+OpenMP 1 (TODO)   0.469 ms
+All correctness checks passed.
+88.09,msec,task-clock:u,1.77%,83444159,100.00,,
+<not supported>,,cycles:u,0.00%,0,100.00,,
+<not supported>,,instructions:u,0.00%,0,100.00,,
+<not supported>,,cache-references:u,0.00%,0,100.00,,
+<not supported>,,cache-misses:u,0.00%,0,100.00,,
+<not supported>,,branches:u,0.00%,0,100.00,,
+<not supported>,,branch-misses:u,0.00%,0,100.00,,
+0,,context-switches:u,0.00%,83444159,100.00,,
+0,,cpu-migrations:u,0.00%,83444159,100.00,,
+12247,,page-faults:u,0.00%,83444159,100.00,,
+49560611,,duration_time,1.47%,7,100.00,,

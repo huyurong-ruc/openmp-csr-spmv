@@ -1,0 +1,10 @@
+level,seed,dynamic_chunk,dynamic_median,guided_chunk,guided_median,long_row_median,best_strategy,best_strategy_median,second_strategy,second_strategy_median,strategy_gap_pct,strategy_close
+1,20260926,16,0.457,8,0.459,0.687,dynamic,0.457,guided,0.459,0.437636761488,yes
+1,12345,16,0.48,8,0.462,0.777,guided,0.462,dynamic,0.48,3.8961038961,no
+1,54321,16,0.467,8,0.481,0.767,dynamic,0.467,guided,0.481,2.99785867238,yes
+2,20260926,32,0.472,2,0.511,0.771,dynamic,0.472,guided,0.511,8.26271186441,no
+2,12345,32,0.484,2,0.457,0.83,guided,0.457,dynamic,0.484,5.90809628009,no
+2,54321,32,0.443,2,0.56,0.928,dynamic,0.443,guided,0.56,26.4108352144,no
+3,20260926,64,0.417,4,0.464,0.937,dynamic,0.417,guided,0.464,11.2709832134,no
+3,12345,64,0.411,4,0.453,0.83,dynamic,0.411,guided,0.453,10.2189781022,no
+3,54321,64,0.48,4,0.438,0.993,guided,0.438,dynamic,0.48,9.58904109589,no
