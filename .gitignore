@@ -2,6 +2,7 @@
 course_materials/
 
 #本地编译产物
+/csr_spmv_lab
 *.exe
 *.o
 *.obj

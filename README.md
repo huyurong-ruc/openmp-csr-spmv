@@ -1,18 +1,20 @@
 # OpenMP CSR SpMV 实验一
 
-## 主要文件
+## 当前目录结构
 
 ```text
 .
-├─ archive/
-│  ├─ experiments/
-│  │  ├─ 0_static_default.cpp
-│  │  ├─ 1_dynamic.cpp
-│  │  ├─ 2_guided.cpp
-│  │  ├─ 3_hybrid.cpp
-│  │  └─ 4_nnz_aware.cpp
-│  ├─ 中间产物/doc/
-│  └─ result.md
+├─ csr_spmv_lab.cpp
+├─ run_main.sh
+├─ analyze.py
+├─ 实验方案.md
+├─ 实验报告.md
+├─ 心路历程.md
+├─ image.png
+├─ image/
+│  ├─ image1.png
+│  ├─ image2.png
+│  └─ image3.png
 ├─ results/
 │  ├─ main/
 │  │  ├─ raw.csv
@@ -33,38 +35,84 @@
 │     ├─ dynamic.txt
 │     ├─ long_row.txt
 │     └─ summary.csv
-├─ csr_spmv_lab.cpp
-├─ run_main.sh
-├─ analyze.py
-├─ 实验方案.md
-├─ 实验报告.md
+├─ breakdown实验/
+│  ├─ csr_spmv_breakdown.cpp
+│  ├─ run_breakdown_pilot.sh
+│  ├─ breakdown_pilot.csv
+│  ├─ breakdown实验设计.md
+│  └─ breakdown实验报告.md
 └─ README.md
 ```
 
-早期生成的候选实现和非最终测量已归档至 `archive/`，仅用于记录实验过程。
+## 核心文件
 
-归档候选代码包括：
+- `csr_spmv_lab.cpp`：主程序，包含 serial、starter `std::thread`、OpenMP runtime scheduling 和 long-row splitting。
+- `run_main.sh`：主实验运行脚本。
+- `analyze.py`：从主实验 summary 生成 main overview 的分析脚本。
+- `实验方案.md`：主实验、规模验证和 seed 验证的参数设计。
+- `实验报告.md`：最终实验分析。
+- `breakdown实验/`：long-row 测量版本、已有数据、实验设计和补充报告。
 
-- 方法1：`schedule(dynamic, 16)`
-- 方法2：`schedule(guided, 16)`
-- 方法3：把超长行拆成多段，在行内并行求和
-- 方法4：根据累计nnz给线程划分连续行区间
+## 编译
 
-归档的前期记录见 [archive/result.md](archive/result.md)，其中的性能数据和策略结论均不用于正式实验。
+```bash
+g++ -O2 -std=c++17 -fopenmp -pthread csr_spmv_lab.cpp -o csr_spmv_lab
+```
 
-## 当前实验状态
+## 主实验
 
-实验方案已经冻结，详细配置见 [实验方案.md](实验方案.md)。主实验、规模验证、seed 鲁棒性验证和 Linux `perf stat` 分析均已完成；所有正式性能数据均在当前本机 WSL 环境中实际运行获得。
+在16个可见CPU的WSL环境中运行：
 
-当前主要探索 `dynamic`、`guided`、`long-row` 三种策略；`static` 和 `nnz-aware` 作为已有参考，不是本次主要探索对象。
+```bash
+bash run_main.sh
+```
 
-正式结果统一保存在 `results/`：
+脚本固定使用以下OpenMP运行时设置，并执行主实验的 dynamic、guided、chunk、Level 和线程数组合：
 
-- `results/main/`：主实验原始记录、统计汇总和15行 overview。
-- `results/size/`：small、medium、large 规模验证结果。
-- `results/seed/`：三个随机 seed 的鲁棒性验证结果。
-- `results/perf/`：运行环境、四个单策略的原始 `perf stat` 输出和汇总。
+```text
+OMP_WAIT_POLICY=PASSIVE
+OMP_DYNAMIC=FALSE
+OMP_PROC_BIND=false
+OMP_PLACES unset
+```
 
-其中 `raw.csv` 保存进程级正式记录，`summary.csv` 保存各逻辑配置的 median / mean / min / max，`overview.csv` 是用于人工检查和报告整理的机械汇总，不包含新的实验测量。
+`run_main.sh`生成 `results/main/raw.csv` 和 `results/main/summary.csv`。随后可运行：
 
-最终实验结论见 [实验报告.md](实验报告.md)。
+```bash
+python3 analyze.py
+```
+
+生成 `results/main/overview.csv`。
+
+## Breakdown脚本
+
+`breakdown实验/run_breakdown_pilot.sh`固定使用 Level 3、medium、16线程、seed 20260926及与正式实验相同的OpenMP运行时设置。脚本总是创建新CSV；目标路径已存在时会拒绝覆盖。
+
+分别运行已有数据中的四组设置：
+
+```bash
+bash breakdown实验/run_breakdown_pilot.sh original-500x5
+bash breakdown实验/run_breakdown_pilot.sh instrumented-100x5
+bash breakdown实验/run_breakdown_pilot.sh instrumented-500x5
+bash breakdown实验/run_breakdown_pilot.sh instrumented-1000x15
+```
+
+按当前 `breakdown_pilot.csv` 的顺序运行全部四组：
+
+```bash
+bash breakdown实验/run_breakdown_pilot.sh all
+```
+
+各模式都有不会覆盖现有 `breakdown_pilot.csv` 的默认输出文件名。也可以把第二个参数指定为新的输出路径，例如：
+
+```bash
+bash breakdown实验/run_breakdown_pilot.sh instrumented-1000x15 /tmp/breakdown_1000x15.csv
+```
+
+## 结果文件说明
+
+- `raw.csv`：进程级原始测量记录。
+- `summary.csv`：按逻辑配置整理的统计汇总。
+- `overview.csv`：面向人工检查和报告整理的概览。
+
+`results/main/raw.csv` 与 `results/main/summary.csv` 由 `run_main.sh` 生成，`results/main/overview.csv` 由 `analyze.py` 生成。

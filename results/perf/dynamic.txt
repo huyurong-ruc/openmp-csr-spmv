@@ -1,37 +1,37 @@
 CSR SpMV skewed-matrix experiment
 rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
 OpenMP enabled, _OPENMP=201511
-OpenMP 1 (TODO)   0.487 ms
+OpenMP 1 (runtime scheduling)   0.487 ms
 All correctness checks passed.
 CSR SpMV skewed-matrix experiment
 rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
 OpenMP enabled, _OPENMP=201511
-OpenMP 1 (TODO)   0.688 ms
+OpenMP 1 (runtime scheduling)   0.688 ms
 All correctness checks passed.
 CSR SpMV skewed-matrix experiment
 rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
 OpenMP enabled, _OPENMP=201511
-OpenMP 1 (TODO)   0.522 ms
+OpenMP 1 (runtime scheduling)   0.522 ms
 All correctness checks passed.
 CSR SpMV skewed-matrix experiment
 rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
 OpenMP enabled, _OPENMP=201511
-OpenMP 1 (TODO)   0.576 ms
+OpenMP 1 (runtime scheduling)   0.576 ms
 All correctness checks passed.
 CSR SpMV skewed-matrix experiment
 rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
 OpenMP enabled, _OPENMP=201511
-OpenMP 1 (TODO)   0.576 ms
+OpenMP 1 (runtime scheduling)   0.576 ms
 All correctness checks passed.
 CSR SpMV skewed-matrix experiment
 rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
 OpenMP enabled, _OPENMP=201511
-OpenMP 1 (TODO)   0.474 ms
+OpenMP 1 (runtime scheduling)   0.474 ms
 All correctness checks passed.
 CSR SpMV skewed-matrix experiment
 rows=20000, cols=100000, nnz=1920000, long_rows=200, long_nnz=4650, seed=20260926, requested_threads=16
 OpenMP enabled, _OPENMP=201511
-OpenMP 1 (TODO)   0.469 ms
+OpenMP 1 (runtime scheduling)   0.469 ms
 All correctness checks passed.
 88.09,msec,task-clock:u,1.77%,83444159,100.00,,
 <not supported>,,cycles:u,0.00%,0,100.00,,
