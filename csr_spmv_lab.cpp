@@ -354,7 +354,7 @@ int main(int argc, char** argv) {
                     spmv_omp_student_1(matrix, x, y);
                 },
                 reference, output, options.repeats);
-            std::cout << "OpenMP 1 (TODO)   " << openmp_1_ms << " ms\n";
+            std::cout << "OpenMP 1 (runtime schedule)  " << openmp_1_ms << " ms\n";
         }
         if (options.only == "all" || options.only == "omp2") {
             const double openmp_2_ms = benchmark_ms(
@@ -362,7 +362,7 @@ int main(int argc, char** argv) {
                     spmv_omp_student_2(matrix, x, y);
                 },
                 reference, output, options.repeats);
-            std::cout << "OpenMP 2 (TODO)  " << openmp_2_ms << " ms\n";
+            std::cout << "OpenMP 2 (long-row)          " << openmp_2_ms << " ms\n";
         }
         std::cout << "All correctness checks passed.\n";
     } catch (const std::exception& error) {
