@@ -1,17 +1,24 @@
 # OpenMP CSR SpMV 实验一
 
-## 当前目录结构
+本仓库实现并比较 CSR SpMV 的 OpenMP runtime scheduling、long-row splitting 与 `std::thread` 基线，并保存主实验、规模验证、随机种子验证、perf 和 breakdown 结果。
+
+## 目录结构
 
 ```text
 .
 ├─ csr_spmv_lab.cpp
 ├─ run_main.sh
 ├─ analyze.py
-├─ 实验方案.md
-├─ 实验报告.md
-├─ 心路历程.md
-├─ image.png
+├─ doc/
+│  ├─ 实验方案.md
+│  ├─ 实验报告.md
+│  ├─ 实验报告.pdf
+│  ├─ 心路历程.md
+│  └─ 心路历程.pdf
 ├─ image/
+│  ├─ correctness-check.png
+│  ├─ ai-parameter-selection.png
+│  ├─ ai-experiment-plan.png
 │  ├─ image1.png
 │  ├─ image2.png
 │  └─ image3.png
@@ -44,14 +51,13 @@
 └─ README.md
 ```
 
-## 核心文件
+## 文档
 
-- `csr_spmv_lab.cpp`：主程序，包含 serial、starter `std::thread`、OpenMP runtime scheduling 和 long-row splitting。
-- `run_main.sh`：主实验运行脚本。
-- `analyze.py`：从主实验 summary 生成 main overview 的分析脚本。
-- `实验方案.md`：主实验、规模验证和 seed 验证的参数设计。
-- `实验报告.md`：最终实验分析。
-- `breakdown实验/`：long-row 测量版本、已有数据、实验设计和补充报告。
+- [实验方案](doc/实验方案.md)
+- [实验报告（Markdown）](doc/实验报告.md) / [实验报告（PDF）](doc/实验报告.pdf)
+- [心路历程（Markdown）](doc/心路历程.md) / [心路历程（PDF）](doc/心路历程.pdf)
+- [Breakdown 实验设计](breakdown实验/breakdown实验设计.md)
+- [Breakdown 补充报告](breakdown实验/breakdown实验报告.md)
 
 ## 编译
 
@@ -59,15 +65,9 @@
 g++ -O2 -std=c++17 -fopenmp -pthread csr_spmv_lab.cpp -o csr_spmv_lab
 ```
 
-## 主实验
+## 主实验复现
 
-在16个可见CPU的WSL环境中运行：
-
-```bash
-bash run_main.sh
-```
-
-脚本固定使用以下OpenMP运行时设置，并执行主实验的 dynamic、guided、chunk、Level 和线程数组合：
+`run_main.sh` 要求 WSL 中可见 16 个 CPU，并固定以下 OpenMP 运行时环境：
 
 ```text
 OMP_WAIT_POLICY=PASSIVE
@@ -76,7 +76,13 @@ OMP_PROC_BIND=false
 OMP_PLACES unset
 ```
 
-`run_main.sh`生成 `results/main/raw.csv` 和 `results/main/summary.csv`。随后可运行：
+运行主实验：
+
+```bash
+bash run_main.sh
+```
+
+脚本生成 `results/main/raw.csv` 和 `results/main/summary.csv`。随后运行：
 
 ```bash
 python3 analyze.py
@@ -84,11 +90,9 @@ python3 analyze.py
 
 生成 `results/main/overview.csv`。
 
-## Breakdown脚本
+## Breakdown 复现
 
-`breakdown实验/run_breakdown_pilot.sh`固定使用 Level 3、medium、16线程、seed 20260926及与正式实验相同的OpenMP运行时设置。脚本总是创建新CSV；目标路径已存在时会拒绝覆盖。
-
-分别运行已有数据中的四组设置：
+Breakdown 固定使用 Level 3、medium、16线程、seed 20260926及与主实验相同的 OpenMP 环境。脚本拒绝覆盖已存在的目标文件。
 
 ```bash
 bash breakdown实验/run_breakdown_pilot.sh original-500x5
@@ -97,22 +101,10 @@ bash breakdown实验/run_breakdown_pilot.sh instrumented-500x5
 bash breakdown实验/run_breakdown_pilot.sh instrumented-1000x15
 ```
 
-按当前 `breakdown_pilot.csv` 的顺序运行全部四组：
+运行全部四组并写入新的默认结果文件：
 
 ```bash
 bash breakdown实验/run_breakdown_pilot.sh all
 ```
 
-各模式都有不会覆盖现有 `breakdown_pilot.csv` 的默认输出文件名。也可以把第二个参数指定为新的输出路径，例如：
-
-```bash
-bash breakdown实验/run_breakdown_pilot.sh instrumented-1000x15 /tmp/breakdown_1000x15.csv
-```
-
-## 结果文件说明
-
-- `raw.csv`：进程级原始测量记录。
-- `summary.csv`：按逻辑配置整理的统计汇总。
-- `overview.csv`：面向人工检查和报告整理的概览。
-
-`results/main/raw.csv` 与 `results/main/summary.csv` 由 `run_main.sh` 生成，`results/main/overview.csv` 由 `analyze.py` 生成。
+也可以将第二个参数指定为新的输出路径。
